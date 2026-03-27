@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kavinda Kulasinghe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=Outfit:wght@200;300&family=Barlow+Condensed:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:        #111;
+      --white:        #fff;
+      --border:       #e8e8e8;
+      --border-light: #f0f0f0;
+      --muted:        #aaa;
+      --text-body:    #555;
+      --pad-h:        56px;
+      --pad-v:        100px;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 56px;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600;
+      color: var(--white); transition: color 0.4s;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      text-decoration: none;
+    }
+    nav.scrolled .nav-logo { color: var(--black); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: rgba(255,255,255,0.8); text-decoration: none;
+      letter-spacing: 0.3px; transition: color 0.2s;
+    }
+    nav.scrolled .nav-links a { color: #888; }
+    .nav-links a:hover { color: var(--white); }
+    nav.scrolled .nav-links a:hover { color: var(--black); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 560px;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 0 var(--pad-h);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center 40%;
+      background-repeat: no-repeat;
+      background-color: #1a1a1a;
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.78) 0%,
+        rgba(0,0,0,0.35) 45%,
+        rgba(0,0,0,0.10) 100%
+      );
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(32px); filter: blur(6px); }
+      to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 800; color: var(--white);
+      line-height: 1.0; letter-spacing: clamp(-1px, -0.03em, -3px);
+      margin-bottom: 16px;
+      animation: heroReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    .hero-role {
+      font-family: 'Outfit', sans-serif; font-weight: 200;
+      font-size: clamp(20px, 2.2vw, 30px);
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.5px;
+      animation: heroReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+    }
+
+    /* ABOUT */
+    .about {
+      background: var(--white); padding: var(--pad-v) var(--pad-h);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 80px; row-gap: 32px;
+    }
+    .about-top    { grid-column: 1; grid-row: 1; }
+    .about-bottom { grid-column: 1; grid-row: 2; }
+    .instax-wrap  { grid-column: 2; grid-row: 1 / 3; }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 700; letter-spacing: 1px;
+      color: var(--muted); text-transform: uppercase;
+      margin-bottom: 32px; line-height: 1;
+    }
+
+    .about-heading {
+      font-family: 'Fraunces', serif;
+      font-size: 42px; font-weight: 700;
+      color: var(--black); letter-spacing: -0.5px;
+      line-height: 1.1; margin-bottom: 28px;
+    }
+
+    .about-text {
+      font-size: 15px; font-weight: 300; color: var(--text-body);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .about-text:last-of-type { margin-bottom: 40px; }
+
+    .about-ctas { display: flex; gap: 12px; }
+
+    .btn-primary {
+      background: var(--black); color: var(--white); border: none;
+      padding: 12px 24px; font-family: 'DM Sans', sans-serif;
+      font-size: 13px; cursor: pointer; transition: background 0.2s;
+      display: inline-block; text-decoration: none;
+    }
+    .btn-primary:hover { background: #333; }
+
+    .btn-ghost {
+      background: transparent; color: #888;
+      border: 1px solid #e0e0e0; padding: 12px 20px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn-ghost:hover { color: var(--black); border-color: var(--muted); }
+
+    .instax-wrap {
+      display: flex; justify-content: center; align-items: flex-start;
+    }
+    .instax {
+      background: var(--white);
+      padding: 14px 14px 48px 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+      transform: rotate(-2deg);
+      width: 300px;
+      flex-shrink: 0;
+    }
+    .instax img {
+      width: 100%; display: block;
+      aspect-ratio: 3/4; object-fit: cover; object-position: center top;
+    }
+
+    /* RESEARCH INTERESTS CHIPS */
+    .ri-section {
+      padding: 72px 56px;
+      border-top: 1px solid var(--border-light);
+    }
+    .ri-section .section-label { margin-bottom: 32px; }
+
+    .ri-chips {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+
+    .ri-chip {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px; font-weight: 400; color: var(--black);
+      border: 1px solid #ddd;
+      padding: 10px 22px;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .ri-chip:hover {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* EDUCATION + WORK */
+    .edu-work {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      column-gap: 64px;
+      padding: var(--pad-v) var(--pad-h);
+      border-top: 1px solid var(--border-light);
+      align-items: start;
+    }
+    .ew-divider { background: #e8e8e8; }
+    .ew-col .section-label { margin-bottom: 40px; }
+
+    .timeline {
+      padding-left: 24px;
+      border-left: 1px solid #ddd;
+    }
+    .tl-entry {
+      position: relative;
+      display: flex;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .tl-entry:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -28px; top: 10px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid #111;
+      background: var(--white);
+    }
+    .tl-logo {
+      width: 80px; height: 80px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0;
+    }
+    .tl-logo img {
+      width: 80px; height: 80px; object-fit: contain;
+    }
+    .tl-info { flex: 1; min-width: 0; }
+    .tl-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 700; color: var(--black);
+      line-height: 1.35; margin-bottom: 4px;
+    }
+    .tl-org  { font-size: 14px; color: #444; margin-bottom: 3px; }
+    .tl-country { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .tl-year {
+      font-size: 13px; color: #888;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .badge-current {
+      font-size: 9px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--black); color: var(--white);
+      padding: 2px 7px; flex-shrink: 0;
+    }
+    .tl-roles {
+      margin-top: 12px;
+      border-left: 1px dashed #ddd;
+      padding-left: 12px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .tl-role {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 12px;
+      border: 1px solid var(--border-light);
+      transition: border-color 0.2s;
+    }
+    .tl-role:hover { border-color: var(--black); }
+    .tl-role-title { font-size: 13px; color: #333; }
+    .tl-role-year  { font-size: 12px; color: var(--muted); flex-shrink: 0; margin-left: 12px; }
+
+    /* AFFILIATIONS SECTION */
+    .affiliations-section {
+      padding: var(--pad-v) var(--pad-h);
+      border-top: 1px solid var(--border-light);
+    }
+    .affiliations-section .section-label { margin-bottom: 40px; }
+
+    .affil-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .affil-card-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s, transform 0.25s;
+      cursor: default;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .affil-card-item:hover {
+      border-color: var(--black);
+      transform: translateY(-4px);
+    }
+
+    .affil-logo-box {
+      width: 70%; height: 70%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .affil-logo-box img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .affil-logo-placeholder {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 1px dashed #bbb; background: #f7f7f7;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #bbb;
+    }
+
+    .affil-card-info {
+      position: absolute; inset: 0;
+      background: var(--black);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 16px; text-align: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .affil-card-item:hover .affil-card-info { opacity: 1; }
+
+    .affil-card-name {
+      font-size: 13px; font-weight: 500; color: var(--white);
+      line-height: 1.3; margin-bottom: 6px;
+    }
+    .affil-card-type { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+
+    /* MOBILE NAV TOGGLE */
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); transition: background 0.4s;
+    }
+    nav.scrolled .nav-toggle span { background: var(--black); }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      nav { padding: 20px 32px; }
+
+      .hero { padding: 0 32px; }
+
+      .about {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 72px 32px;
+        row-gap: 40px;
+      }
+      .about-top    { grid-column: 1; grid-row: 1; order: 1; }
+      .instax-wrap  { grid-column: 1; grid-row: auto; order: 2; justify-content: flex-start; }
+      .about-bottom { grid-column: 1; grid-row: auto; order: 3; }
+
+      .ri-section { padding: 56px 32px; }
+
+      .affiliations-section { padding: 72px 32px; }
+      .affil-cards-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .edu-work {
+        grid-template-columns: 1fr;
+        padding: 72px 32px;
+      }
+      .ew-divider { height: 1px; width: 100%; margin: 48px 0; }
+
+      .lower {
+        grid-template-columns: 1fr;
+        padding: 0 32px 72px;
+        gap: 0;
+      }
+
+      .affil-col { padding-top: 40px; }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 18px 20px; }
+
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--white); z-index: 99;
+        justify-content: center; align-items: center;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        font-size: 22px; color: var(--black); padding: 16px 0;
+      }
+      .nav-links a:hover { color: var(--black); }
+
+      .nav-logo { font-size: 14px; letter-spacing: 0.8px; }
+      .nav-toggle { display: flex; z-index: 101; }
+
+      .hero { padding: 0 20px; min-height: 100svh; }
+
+      .hero-name { font-size: clamp(36px, 10vw, 64px); word-break: break-word; }
+
+      .hero-role { font-size: clamp(16px, 4.5vw, 22px); }
+
+      .about {
+        padding: 56px 20px;
+        row-gap: 32px;
+      }
+
+      .about-heading { font-size: 32px; }
+
+      .about-ctas { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+
+      .instax { width: 240px; }
+
+      .ri-section { padding: 48px 20px; }
+
+      .affiliations-section { padding: 56px 20px; }
+      .affil-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+      .edu-work { padding: 56px 20px; }
+      .ew-divider { margin: 40px 0; }
+
+      .lower { padding: 0 20px 64px; }
+
+      .interest-label { padding-top: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Kavinda Kulasinghe</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="awards.html">Awards</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO — replace hero-bg.jpg with your image file -->
+<div class="hero" id="hero" style="background-image: url('images/hero-bg.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-name">Kavinda<br>Kulasinghe</h1>
+    <p class="hero-role">PhD Researcher in Information Systems</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-top">
+    <p class="section-label">About Me</p>
+    <h2 class="about-heading">Hi, I'm Kavinda</h2>
+  </div>
+  <div class="instax-wrap">
+    <div class="instax">
+      <img src="images/profile.jpg" alt="Kavinda Kulasinghe" />
+    </div>
+  </div>
+  <div class="about-bottom">
+    <p class="about-text">
+      I am currently a PhD candidate in Information Systems at the University of Oulu, within the Software Engineering and Information Systems (SEIS) unit at the Faculty of Information Technology and Electrical Engineering.
+    </p>
+    <p class="about-text">
+      My work focuses on understanding how digital systems influence behaviour and how they can be designed to support meaningful, lasting change. I study this through the lens of persuasive technologies, with a focus on digital health interventions, behaviour change support systems, and the role of artificial intelligence in shaping user experiences.
+    </p>
+    <p class="about-text">
+      My research also draws on human–computer interaction, exploring how interactive and AI-driven systems can guide users in a way that is both effective and responsible. A central part of my work is understanding how engagement evolves over time, why users disengage, and how systems can be designed to sustain long-term use and achieve positive behavioural outcomes.
+    </p>
+    <div class="about-ctas">
+      <a href="publications.html" class="btn-primary">View Publications</a>
+      <button class="btn-ghost">Get in touch →</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section class="ri-section" id="research">
+  <p class="section-label">Research Interests</p>
+  <div class="ri-chips">
+    <span class="ri-chip">Persuasive Technologies</span>
+    <span class="ri-chip">AI in Healthcare</span>
+    <span class="ri-chip">Behaviour Change</span>
+    <span class="ri-chip">Digital Health Interventions</span>
+    <span class="ri-chip">Human–AI Interaction</span>
+    <span class="ri-chip">Quantitative Research</span>
+  </div>
+</section>
+
+<!-- EDUCATION + WORK EXPERIENCE -->
+<section class="edu-work">
+
+  <!-- Education -->
+  <div class="ew-col">
+    <p class="section-label">Education</p>
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/oulu.png" alt="University of Oulu"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">PhD Candidate in Information Systems</h4>
+          <p class="tl-org">University of Oulu</p>
+          <p class="tl-country">Finland</p>
+          <p class="tl-year">2025–Present <span class="badge-current">Current</span></p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/oulu.png" alt="University of Oulu"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">MSc Business Analytics</h4>
+          <p class="tl-org">University of Oulu</p>
+          <p class="tl-country">Finland</p>
+          <p class="tl-year">2023–2024</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/uwl.png" alt="University of West London"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">Master of Business Administration</h4>
+          <p class="tl-org">University of West London</p>
+          <p class="tl-country">London, UK</p>
+          <p class="tl-year">2020–2021</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/pera.png" alt="University of Peradeniya"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">BSc (Hons.) Applied Science</h4>
+          <p class="tl-org">University of Peradeniya</p>
+          <p class="tl-country">Sri Lanka</p>
+          <p class="tl-year">2014–2018</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="ew-divider"></div>
+
+  <!-- Work Experience -->
+  <div class="ew-col">
+    <p class="section-label">Work Experience</p>
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/oulu.png" alt="University of Oulu"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">University of Oulu</h4>
+          <p class="tl-country">Finland</p>
+          <div class="tl-roles">
+            <div class="tl-role">
+              <span class="tl-role-title">Doctoral Researcher</span>
+              <span class="tl-role-year">2025–Present <span class="badge-current">Current</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/orangehrm.png" alt="OrangeHRM"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">OrangeHRM</h4>
+          <p class="tl-country">Colombo, Sri Lanka</p>
+          <div class="tl-roles">
+            <div class="tl-role">
+              <span class="tl-role-title">Associate Lead Business Analyst</span>
+              <span class="tl-role-year">2023</span>
+            </div>
+            <div class="tl-role">
+              <span class="tl-role-title">Senior Business Analyst</span>
+              <span class="tl-role-year">2022</span>
+            </div>
+            <div class="tl-role">
+              <span class="tl-role-title">Business Analyst</span>
+              <span class="tl-role-year">2020–2021</span>
+            </div>
+            <div class="tl-role">
+              <span class="tl-role-title">Associate Business Analyst</span>
+              <span class="tl-role-year">2018–2019</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/mas.png" alt="MAS Holdings"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">MAS Holdings</h4>
+          <p class="tl-country">Panadura, Sri Lanka</p>
+          <div class="tl-roles">
+            <div class="tl-role">
+              <span class="tl-role-title">Academic Intern Industrial Engineering</span>
+              <span class="tl-role-year">2017–2018</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-logo"><img src="images/boc.jpg" alt="Bank of Ceylon"/></div>
+        <div class="tl-info">
+          <h4 class="tl-title">Bank of Ceylon</h4>
+          <p class="tl-country">Rattota, Sri Lanka</p>
+          <div class="tl-roles">
+            <div class="tl-role">
+              <span class="tl-role-title">Trainee Staff Assistant</span>
+              <span class="tl-role-year">2013–2014</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- AFFILIATIONS -->
+<section class="affiliations-section">
+  <p class="section-label">Affiliations</p>
+  <div class="affil-cards-grid">
+
+    <!-- ACM -->
+    <div class="affil-card-item">
+      <div class="affil-logo-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeoEwOo5rFB51Mo3TANusQhhwVr0I_OopxEw&s" alt="ACM logo"/>
+      </div>
+      <div class="affil-card-info">
+        <p class="affil-card-name">Association for Computing Machinery</p>
+        <p class="affil-card-type">Professional Member since 2026</p>
+      </div>
+    </div>
+
+    <!-- Tieteentekijät -->
+    <div class="affil-card-item">
+      <div class="affil-logo-box">
+        <img src="images/tieteentekijat.png" alt="Tieteentekijät logo"/>
+      </div>
+      <div class="affil-card-info">
+        <p class="affil-card-name">Tieteentekijät</p>
+        <p class="affil-card-type">Member since 2026</p>
+      </div>
+    </div>
+
+    <!-- Old Trinitians Sports Club -->
+    <div class="affil-card-item">
+      <div class="affil-logo-box">
+        <img src="images/otsc-logo.jpg" alt="Old Trinitians Sports Club logo"/>
+      </div>
+      <div class="affil-card-info">
+        <p class="affil-card-name">Old Trinitians Sports Club</p>
+        <p class="affil-card-type">Life Member since 2012</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<script>
+  const nav = document.getElementById('nav');
+  const hero = document.getElementById('hero');
+  const io = new IntersectionObserver(([e]) => {
+    nav.classList.toggle('scrolled', !e.isIntersecting);
+  }, { threshold: 0.05 });
+  io.observe(hero);
+
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+</script>
+
+<footer style="border-top: 1px solid #f0f0f0; padding: 24px 56px; text-align: center; font-size: 12px; color: #bbb;">
+  © 2025 Kavinda Kulasinghe. All rights reserved.
+</footer>
+
+</body>
+</html>

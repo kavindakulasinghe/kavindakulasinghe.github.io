@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Awards · Kavinda Kulasinghe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=Barlow+Condensed:wght@600&family=Epilogue:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:        #111;
+      --white:        #fff;
+      --border:       #e8e8e8;
+      --border-light: #f0f0f0;
+      --muted:        #aaa;
+      --text-body:    #555;
+      --pad-h:        56px;
+      --pad-v:        100px;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px var(--pad-h);
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600;
+      color: var(--black); text-transform: uppercase; letter-spacing: 1.5px;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: #888; text-decoration: none;
+      letter-spacing: 0.3px; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); font-weight: 500; }
+
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px; background: var(--black);
+    }
+
+    /* BANNER */
+    .awards-banner {
+      margin-top: 73px;
+      position: relative;
+      height: 340px;
+      background-color: #1a1a1a;
+      display: flex; align-items: flex-end;
+      padding: 48px var(--pad-h);
+      overflow: hidden;
+    }
+    .awards-banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
+    }
+    .awards-banner-title {
+      position: relative; z-index: 2;
+      font-family: 'Epilogue', sans-serif;
+      font-size: clamp(44px, 6.5vw, 80px);
+      font-weight: 800; color: var(--white);
+      line-height: 1; letter-spacing: -1px;
+    }
+
+    /* PAGE */
+    .awards-page {
+      padding: 64px var(--pad-h) var(--pad-v);
+    }
+
+    /* GRID */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* CARD */
+    .award-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .award-card:hover {
+      border-color: var(--black);
+      transform: translateY(-2px);
+    }
+    .award-card--no-link {
+      cursor: default;
+    }
+    .award-card--no-link:hover {
+      border-color: var(--border);
+      transform: none;
+    }
+
+    /* PHOTO */
+    .award-photo {
+      height: 220px;
+      background: #f5f5f5;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .award-photo-label {
+      font-size: 11px;
+      color: #ccc;
+      font-family: monospace;
+      letter-spacing: 0.3px;
+    }
+
+    /* BODY */
+    .award-body {
+      padding: 20px 24px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .award-badge {
+      display: inline-block;
+      font-size: 11px; font-weight: 500;
+      color: var(--text-body);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px 12px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .award-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--black);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .award-organiser {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .award-year {
+      font-size: 12px;
+      color: #ccc;
+      border-top: 1px solid var(--border-light);
+      margin-top: 16px;
+      padding: 12px 0;
+    }
+
+    /* SPACER (invisible, centres 5th card) */
+    .award-spacer {
+      display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 24px var(--pad-h);
+      text-align: center;
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      nav { padding: 20px 32px; }
+      .awards-banner { height: 260px; padding: 40px 32px; }
+      .awards-page { padding: 48px 32px 72px; }
+      .awards-grid { grid-template-columns: repeat(2, 1fr); }
+      .award-spacer { display: none; }
+      footer { padding: 24px 32px; }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 18px 20px; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--white); z-index: 99;
+        justify-content: center; align-items: center;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 22px; color: var(--black); padding: 16px 0; }
+      .nav-toggle { display: flex; z-index: 101; }
+      .nav-logo { font-size: 14px; letter-spacing: 0.8px; }
+
+      .awards-banner { height: 220px; padding: 32px 20px; }
+      .awards-page { padding: 40px 20px 64px; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .award-spacer { display: none; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Kavinda Kulasinghe</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="awards.html" class="active">Awards</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- BANNER -->
+<div class="awards-banner">
+  <div class="awards-banner-overlay"></div>
+  <h1 class="awards-banner-title">Awards</h1>
+</div>
+
+<div class="awards-page">
+  <div class="awards-grid">
+
+    <!-- 1: Techstars Fall 2025 -->
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7383906304538329088" target="_blank" class="award-card">
+      <div class="award-photo" style="background-image: url('images/startupweekendautumn.jpg')">
+      </div>
+      <div class="award-body">
+        <span class="award-badge">1st Place</span>
+        <p class="award-title">Techstars Startup Weekend Fall Edition</p>
+        <p class="award-organiser">Techstars, Oulu Finland</p>
+        <p class="award-year">2025</p>
+      </div>
+    </a>
+
+    <!-- 2: Techstars Spring 2025 -->
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7310624133694816257" target="_blank" class="award-card">
+      <div class="award-photo" style="background-image: url('images/startupweekendspring.jpg')">
+      </div>
+      <div class="award-body">
+        <span class="award-badge">1st Place</span>
+        <p class="award-title">Techstars Startup Weekend Spring Edition</p>
+        <p class="award-organiser">Techstars, Oulu Finland</p>
+        <p class="award-year">2025</p>
+      </div>
+    </a>
+
+    <!-- 3: Kickstart 2024 -->
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7262484916766969856" target="_blank" class="award-card">
+      <div class="award-photo" style="background-image: url('images/kickstart.jpg')">
+      </div>
+      <div class="award-body">
+        <span class="award-badge">1st Place</span>
+        <p class="award-title">Kickstart Business Idea Competition Semi Finals</p>
+        <p class="award-organiser">Kickstart, Oulu Finland</p>
+        <p class="award-year">2024</p>
+      </div>
+    </a>
+
+    <!-- 4: Oyster Health Award 2024 -->
+    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7267539963188023297" target="_blank" class="award-card">
+      <div class="award-photo" style="background-image: url('images/healthwellness.jpg')">
+      </div>
+      <div class="award-body">
+        <span class="award-badge">Special Award</span>
+        <p class="award-title">Health &amp; Wellness Technology Award</p>
+        <p class="award-organiser">Oyster Incubator, Oulu Finland</p>
+        <p class="award-year">2024</p>
+      </div>
+    </a>
+
+    <!-- 5: ITEE Scholarship 2024 (no link) — sits in centre column naturally -->
+    <div class="award-card award-card--no-link">
+      <div class="award-photo">
+        <img src="images/oulu.png" alt="University of Oulu" style="max-height: 80px; max-width: 70%; object-fit: contain;"/>
+      </div>
+      <div class="award-body">
+        <span class="award-badge">Scholarship</span>
+        <p class="award-title">Master's Thesis Scholarship — 3,000€</p>
+        <p class="award-organiser">ITEE, University of Oulu Finland</p>
+        <p class="award-year">2024</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2025 Kavinda Kulasinghe. All rights reserved.
+</footer>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
