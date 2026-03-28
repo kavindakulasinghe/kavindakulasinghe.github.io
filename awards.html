@@ -4,85 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Awards · Kavinda Kulasinghe</title>
+  <meta name="description" content="Awards and recognition received by Kavinda Kulasinghe — including Techstars Startup Weekend wins, Kickstart semi-finals, and a University of Oulu thesis scholarship."/>
+  <meta property="og:title" content="Awards · Kavinda Kulasinghe"/>
+  <meta property="og:description" content="Awards and recognition received by Kavinda Kulasinghe — Techstars, Kickstart, and University of Oulu scholarship."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://kavindakulasinghe.github.io/awards.html"/>
+  <meta property="og:image" content="https://kavindakulasinghe.github.io/images/profile.jpg"/>
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=Barlow+Condensed:wght@600&family=Epilogue:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --black:        #111;
-      --white:        #fff;
-      --border:       #e8e8e8;
-      --border-light: #f0f0f0;
-      --muted:        #aaa;
-      --text-body:    #555;
-      --pad-h:        56px;
-      --pad-v:        100px;
-    }
-
-    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px var(--pad-h);
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600;
-      color: var(--black); text-transform: uppercase; letter-spacing: 1.5px;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; color: #888; text-decoration: none;
-      letter-spacing: 0.3px; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--black); }
-    .nav-links a.active { color: var(--black); font-weight: 500; }
-
-    .nav-toggle {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 4px;
-    }
-    .nav-toggle span {
-      display: block; width: 22px; height: 2px; background: var(--black);
-    }
-
-    /* BANNER */
-    .awards-banner {
-      margin-top: 73px;
-      position: relative;
-      height: 340px;
-      background-color: #1a1a1a;
-      display: flex; align-items: flex-end;
-      padding: 48px var(--pad-h);
-      overflow: hidden;
-    }
-    #banner-canvas {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
-    .awards-banner-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
-    }
-    .awards-banner-title {
-      position: relative; z-index: 2;
-      font-family: 'Epilogue', sans-serif;
-      font-size: clamp(44px, 6.5vw, 80px);
-      font-weight: 800; color: var(--white);
-      line-height: 1; letter-spacing: -1px;
-    }
-
-    /* PAGE */
+    /* GRID */
     .awards-page {
       padding: 64px var(--pad-h) var(--pad-v);
     }
 
-    /* GRID */
     .awards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -104,9 +42,7 @@
       border-color: var(--black);
       transform: translateY(-2px);
     }
-    .award-card--no-link {
-      cursor: default;
-    }
+    .award-card--no-link { cursor: default; }
     .award-card--no-link:hover {
       border-color: var(--border);
       transform: none;
@@ -137,7 +73,6 @@
       display: flex;
       flex-direction: column;
     }
-
     .award-badge {
       display: inline-block;
       font-size: 11px; font-weight: 500;
@@ -148,7 +83,6 @@
       margin-bottom: 14px;
       width: fit-content;
     }
-
     .award-title {
       font-family: 'Syne', sans-serif;
       font-size: 16px; font-weight: 700;
@@ -156,14 +90,12 @@
       line-height: 1.4;
       margin-bottom: 8px;
     }
-
     .award-organiser {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.4;
       flex: 1;
     }
-
     .award-year {
       font-size: 12px;
       color: #ccc;
@@ -171,73 +103,44 @@
       margin-top: 16px;
       padding: 12px 0;
     }
-
-    /* SPACER (invisible, centres 5th card) */
-    .award-spacer {
-      display: block;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border-light);
-      padding: 24px var(--pad-h);
-      text-align: center;
-      font-size: 12px; color: var(--muted);
-    }
+    .award-spacer { display: block; }
 
     /* TABLET */
     @media (max-width: 900px) {
-      nav { padding: 20px 32px; }
-      .awards-banner { height: 260px; padding: 40px 32px; }
       .awards-page { padding: 48px 32px 72px; }
       .awards-grid { grid-template-columns: repeat(2, 1fr); }
       .award-spacer { display: none; }
-      footer { padding: 24px 32px; }
     }
 
     /* MOBILE */
     @media (max-width: 600px) {
-      nav { padding: 18px 20px; }
-      .nav-links {
-        display: none; flex-direction: column; gap: 0;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: var(--white); z-index: 99;
-        justify-content: center; align-items: center;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { font-size: 22px; color: var(--black); padding: 16px 0; }
-      .nav-toggle { display: flex; z-index: 101; }
-      .nav-logo { font-size: 14px; letter-spacing: 0.8px; }
-
-      .awards-banner { height: 220px; padding: 32px 20px; }
       .awards-page { padding: 40px 20px 64px; }
       .awards-grid { grid-template-columns: 1fr; }
       .award-spacer { display: none; }
-      footer { padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
 
-<nav id="nav">
+<nav id="nav" class="nav--static">
   <a href="index.html" class="nav-logo">Kavinda Kulasinghe</a>
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="publications.html">Publications</a></li>
-    <li><a href="awards.html" class="active">Awards</a></li>
+    <li><a href="awards.html" class="active" aria-current="page">Awards</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- BANNER -->
-<div class="awards-banner">
+<div class="page-banner">
   <canvas id="banner-canvas"></canvas>
-  <div class="awards-banner-overlay"></div>
-  <h1 class="awards-banner-title">Awards</h1>
+  <div class="page-banner-overlay"></div>
+  <h1 class="page-banner-title">Awards</h1>
 </div>
 
 <div class="awards-page">
@@ -291,10 +194,10 @@
       </div>
     </a>
 
-    <!-- 5: ITEE Scholarship 2024 (no link) — sits in centre column naturally -->
+    <!-- 5: ITEE Scholarship 2024 -->
     <div class="award-card award-card--no-link">
       <div class="award-photo">
-        <img src="images/oulu.png" alt="University of Oulu" style="max-height: 80px; max-width: 70%; object-fit: contain;"/>
+        <img src="images/oulu.png" alt="University of Oulu" loading="lazy" width="140" height="80" style="max-height: 80px; max-width: 70%; object-fit: contain;"/>
       </div>
       <div class="award-body">
         <span class="award-badge">Scholarship</span>
@@ -307,97 +210,11 @@
   </div>
 </div>
 
-<footer>
-  © 2025 Kavinda Kulasinghe. All rights reserved.
+<footer class="footer">
+  © <span class="footer__year">2026</span> Kavinda Kulasinghe. All rights reserved.
 </footer>
 
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
-</script>
-
-<script>
-(function () {
-  const canvas = document.getElementById('banner-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  /* Draw a React atom icon centred at (cx, cy) with given size and opacity */
-  function drawReactIcon(cx, cy, size, opacity, rotation) {
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(rotation);
-    ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
-    ctx.lineWidth = size * 0.05;
-    ctx.fillStyle = `rgba(255,255,255,${opacity})`;
-
-    const rx = size * 0.9;   // orbit semi-major
-    const ry = size * 0.32;  // orbit semi-minor
-
-    // Three orbits at 0°, 60°, 120°
-    for (let i = 0; i < 3; i++) {
-      ctx.save();
-      ctx.rotate((Math.PI / 3) * i);
-      ctx.beginPath();
-      ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    // Centre dot
-    ctx.beginPath();
-    ctx.arc(0, 0, size * 0.13, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  /* Spawn particles */
-  const COUNT = 18;
-  const particles = Array.from({ length: COUNT }, () => ({
-    x:       Math.random() * window.innerWidth,
-    y:       Math.random() * 340,
-    size:    18 + Math.random() * 28,
-    vx:      (Math.random() - 0.5) * 0.35,
-    vy:      (Math.random() - 0.5) * 0.25,
-    opacity: 0.06 + Math.random() * 0.12,
-    rot:     Math.random() * Math.PI * 2,
-    vrot:    (Math.random() - 0.5) * 0.008,
-  }));
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (const p of particles) {
-      p.x   += p.vx;
-      p.y   += p.vy;
-      p.rot += p.vrot;
-
-      // Wrap around edges
-      if (p.x < -60)              p.x = canvas.width  + 60;
-      if (p.x > canvas.width + 60) p.x = -60;
-      if (p.y < -60)              p.y = canvas.height + 60;
-      if (p.y > canvas.height + 60) p.y = -60;
-
-      drawReactIcon(p.x, p.y, p.size, p.opacity, p.rot);
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-})();
-</script>
+<script src="main.js" defer></script>
 
 </body>
 </html>

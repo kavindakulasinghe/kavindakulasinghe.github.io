@@ -1,0 +1,181 @@
+/* ============================================================
+   SHARED STYLES — kavindakulasinghe.github.io
+   ============================================================ */
+
+/* TOKENS */
+:root {
+  --black:        #111;
+  --white:        #fff;
+  --border:       #e8e8e8;
+  --border-light: #f0f0f0;
+  --muted:        #767676;
+  --text-body:    #555;
+  --pad-h:        56px;
+  --pad-v:        100px;
+}
+
+/* RESET */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* BASE */
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
+
+/* ACCESSIBILITY */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px var(--pad-h);
+  transition: background 0.4s, border-color 0.4s;
+}
+
+/* Static nav (publications, awards, contact) — always white */
+nav.nav--static {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+nav.nav--static .nav-logo { color: var(--black); }
+nav.nav--static .nav-links a { color: #888; }
+nav.nav--static .nav-links a:hover { color: var(--black); }
+nav.nav--static .nav-toggle span { background: var(--black); }
+
+/* Hero nav (index) — transparent initially */
+nav.nav--hero .nav-logo { color: var(--white); transition: color 0.4s; }
+nav.nav--hero .nav-links a { color: rgba(255,255,255,0.8); }
+nav.nav--hero .nav-links a:hover { color: var(--white); }
+nav.nav--hero .nav-toggle span { background: var(--white); transition: background 0.4s; }
+
+/* Scrolled state — added by JS to nav--hero */
+nav.scrolled {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+nav.scrolled .nav-logo { color: var(--black); }
+nav.scrolled .nav-links a { color: #888; }
+nav.scrolled .nav-links a:hover { color: var(--black); }
+nav.scrolled .nav-toggle span { background: var(--black); }
+
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 13px; text-decoration: none;
+  letter-spacing: 0.3px; transition: color 0.2s;
+}
+.nav-links a.active { color: var(--black); font-weight: 500; }
+
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span { display: block; width: 22px; height: 2px; }
+
+/* ============================================================
+   PAGE BANNER (awards, publications, contact)
+   ============================================================ */
+.page-banner {
+  margin-top: 73px;
+  position: relative;
+  height: 340px;
+  background-color: #1a1a1a;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px var(--pad-h);
+  overflow: hidden;
+}
+#banner-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.page-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
+}
+.page-banner-title {
+  position: relative; z-index: 2;
+  font-family: 'Epilogue', sans-serif;
+  font-size: clamp(44px, 6.5vw, 80px);
+  font-weight: 800; color: var(--white);
+  line-height: 1; letter-spacing: -1px;
+}
+
+/* ============================================================
+   SECTION LABEL
+   ============================================================ */
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700; letter-spacing: 1px;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 32px; line-height: 1;
+}
+
+/* ============================================================
+   RESEARCH INTEREST CHIPS (index + publications)
+   ============================================================ */
+.ri-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.ri-chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px; font-weight: 400; color: var(--black);
+  border: 1px solid var(--border);
+  padding: 10px 22px;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  cursor: default;
+}
+.ri-chip:hover {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--border-light);
+  padding: 24px var(--pad-h);
+  text-align: center;
+  font-size: 12px; color: var(--muted);
+}
+
+/* ============================================================
+   RESPONSIVE — nav, banner & footer
+   ============================================================ */
+@media (max-width: 900px) {
+  nav { padding: 20px 32px; }
+  .page-banner { height: 260px; padding: 40px 32px; }
+  .footer { padding: 24px 32px; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 18px 20px; }
+  .nav-logo { font-size: 14px; letter-spacing: 0.8px; }
+  .nav-toggle { display: flex; z-index: 101; }
+
+  .nav-links {
+    display: none; flex-direction: column; gap: 0;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white); z-index: 99;
+    justify-content: center; align-items: center;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 22px; color: var(--black) !important; padding: 16px 0; }
+
+  .page-banner { height: 220px; padding: 32px 20px; }
+  .footer { padding: 24px 20px; }
+}

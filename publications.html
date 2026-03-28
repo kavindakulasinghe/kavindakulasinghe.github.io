@@ -4,119 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Publications · Kavinda Kulasinghe</title>
+  <meta name="description" content="Peer-reviewed publications by Kavinda Kulasinghe covering LLM-based mental health interventions, persuasive technologies, and behaviour change."/>
+  <meta property="og:title" content="Publications · Kavinda Kulasinghe"/>
+  <meta property="og:description" content="Peer-reviewed research on LLM-based mental health interventions, persuasive technologies, and behaviour change by Kavinda Kulasinghe."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://kavindakulasinghe.github.io/publications.html"/>
+  <meta property="og:image" content="https://kavindakulasinghe.github.io/images/profile.jpg"/>
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=Barlow+Condensed:wght@600&family=Epilogue:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --black:        #111;
-      --white:        #fff;
-      --border:       #e8e8e8;
-      --border-light: #f0f0f0;
-      --muted:        #aaa;
-      --text-body:    #555;
-      --pad-h:        56px;
-      --pad-v:        100px;
-    }
-
-    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 24px var(--pad-h);
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600;
-      color: var(--black); text-transform: uppercase; letter-spacing: 1.5px;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; color: #888; text-decoration: none;
-      letter-spacing: 0.3px; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--black); }
-    .nav-links a.active { color: var(--black); font-weight: 500; }
-
-    /* MOBILE NAV TOGGLE */
-    .nav-toggle {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 4px;
-    }
-    .nav-toggle span {
-      display: block; width: 22px; height: 2px;
-      background: var(--black);
-    }
-
-    /* BANNER */
-    .pub-banner {
-      margin-top: 73px;
-      position: relative;
-      height: 340px;
-      background-image: url('images/pub-banner.jpg');
-      background-size: cover;
-      background-position: center;
-      background-color: #1a1a1a;
-      display: flex; align-items: flex-end;
-      padding: 48px var(--pad-h);
-      overflow: hidden;
-    }
-    #banner-canvas {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
-    .pub-banner-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.05) 100%);
-    }
-    .pub-banner-title {
-      position: relative; z-index: 2;
-      font-family: 'Epilogue', sans-serif;
-      font-size: clamp(44px, 6.5vw, 80px);
-      font-weight: 700; color: var(--white);
-      line-height: 1; letter-spacing: -1px;
-      font-weight: 800;
-    }
-
-    /* PAGE WRAPPER */
-    .page { }
-
-    /* SECTION BASE */
+    /* SECTION */
     .pub-section {
       padding: 56px var(--pad-h);
       border-bottom: 1px solid var(--border-light);
     }
 
-    .section-label {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(18px, 2vw, 26px);
-      font-weight: 700; letter-spacing: 1px;
-      color: var(--muted); text-transform: uppercase;
-      margin-bottom: 32px; line-height: 1;
-    }
-
-    /* RESEARCH INTERESTS CHIPS */
-    .ri-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .ri-chip {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 18px; font-weight: 400; color: var(--black);
-      border: 1px solid var(--border);
-      padding: 10px 22px;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-      cursor: default;
-    }
-    .ri-chip:hover {
-      border-color: var(--black);
-      background: var(--black);
-      color: var(--white);
-    }
-
-    /* METRICS CARD */
+    /* METRICS */
     .metrics-card {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -140,15 +46,11 @@
       font-size: 14px; font-weight: 500; color: var(--black);
       margin-bottom: 6px;
     }
-    .metric-sub {
-      font-size: 11px; color: var(--muted);
-      letter-spacing: 0.3px;
-    }
+    .metric-sub { font-size: 11px; color: var(--muted); letter-spacing: 0.3px; }
 
     /* PUBLICATIONS LIST */
     .year-group { margin-bottom: 56px; }
     .year-group:last-child { margin-bottom: 0; }
-
     .year-heading {
       font-family: 'Syne', sans-serif;
       font-size: 15px; font-weight: 700;
@@ -158,119 +60,81 @@
       margin-bottom: 28px;
       letter-spacing: 1px;
     }
-
     .pub-entry {
       padding: 24px 0;
       border-bottom: 1px solid var(--border-light);
     }
     .pub-entry:last-child { border-bottom: none; }
-
     .pub-title {
       font-family: 'Syne', sans-serif;
       font-size: 22px; font-weight: 700; color: var(--black);
       line-height: 1.4; margin-bottom: 10px;
     }
-    .pub-authors {
-      font-size: 16px; color: var(--muted);
-      margin-bottom: 6px;
-    }
+    .pub-authors { font-size: 16px; color: var(--muted); margin-bottom: 6px; }
     .pub-authors strong { color: var(--text-body); font-weight: 500; }
-    .pub-venue {
-      font-size: 15px; color: var(--text-body);
-      font-weight: 800; margin-bottom: 16px;
-    }
+    .pub-venue { font-size: 15px; color: var(--text-body); font-weight: 800; margin-bottom: 16px; }
     .pub-badges { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .pub-badge {
       font-size: 12px; color: var(--text-body);
       border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 999px;
+      padding: 4px 12px; border-radius: 999px;
     }
     .pub-link {
       font-size: 12px; color: var(--black);
       border: 1px solid var(--black);
-      padding: 4px 12px;
-      border-radius: 999px;
+      padding: 4px 12px; border-radius: 999px;
       text-decoration: none;
       transition: background 0.2s, color 0.2s;
     }
-    .pub-link:hover {
-      background: var(--black);
-      color: var(--white);
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border-light);
-      padding: 24px var(--pad-h);
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .pub-link:hover { background: var(--black); color: var(--white); }
 
     /* TABLET */
     @media (max-width: 900px) {
-      nav { padding: 20px 32px; }
       .pub-section { padding: 48px 32px; }
       .metrics-card { grid-template-columns: repeat(2, 1fr); }
       .metric:nth-child(2) { border-right: none; }
       .metric:nth-child(3) { border-top: 1px solid var(--border-light); }
       .metric:nth-child(4) { border-top: 1px solid var(--border-light); }
-      footer { padding: 24px 32px; }
     }
 
     /* MOBILE */
     @media (max-width: 600px) {
-      nav { padding: 18px 20px; }
-      .nav-links {
-        display: none; flex-direction: column; gap: 0;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: var(--white); z-index: 99;
-        justify-content: center; align-items: center;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { font-size: 22px; color: var(--black); padding: 16px 0; }
-      .nav-toggle { display: flex; z-index: 101; }
-      .nav-logo { font-size: 14px; letter-spacing: 0.8px; }
-
       .pub-section { padding: 40px 20px; }
-      .pub-banner { height: 220px; padding: 32px 20px; }
       .ri-chip { font-size: 15px; padding: 8px 16px; }
       .metrics-card { grid-template-columns: repeat(2, 1fr); border-radius: 12px; }
       .metric { padding: 28px 16px; }
       .pub-title { font-size: 15px; }
-      footer { padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
 
-<nav id="nav">
+<nav id="nav" class="nav--static">
   <a href="index.html" class="nav-logo">Kavinda Kulasinghe</a>
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="publications.html" class="active">Publications</a></li>
+    <li><a href="publications.html" class="active" aria-current="page">Publications</a></li>
     <li><a href="awards.html">Awards</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- BANNER -->
-<div class="pub-banner">
+<div class="page-banner">
   <canvas id="banner-canvas"></canvas>
-  <div class="pub-banner-overlay"></div>
-  <h1 class="pub-banner-title">Publications</h1>
+  <div class="page-banner-overlay"></div>
+  <h1 class="page-banner-title">Publications</h1>
 </div>
 
 <div class="page">
 
   <!-- RESEARCH INTERESTS -->
   <section class="pub-section">
-    <p class="section-label">Research Interests</p>
+    <h2 class="section-label">Research Interests</h2>
     <div class="ri-chips">
       <span class="ri-chip">Persuasive Technologies</span>
       <span class="ri-chip">AI in Healthcare</span>
@@ -310,10 +174,8 @@
   <!-- PUBLICATIONS -->
   <section class="pub-section">
 
-    <!-- 2025 -->
     <div class="year-group">
       <p class="year-heading">2025</p>
-
       <div class="pub-entry">
         <p class="pub-title">Exploring Large Language Model-Based Mental Health Interventions: A Systematic Review with a Persuasive System Design Lense</p>
         <p class="pub-authors">S Giri, <strong>K Kulasinghe</strong>, H Oinas-Kukkonen</p>
@@ -325,10 +187,8 @@
       </div>
     </div>
 
-    <!-- 2024 -->
     <div class="year-group">
       <p class="year-heading">2024</p>
-
       <div class="pub-entry">
         <p class="pub-title">Large Language Model-Based Mental Health Interventions for Promoting Behavior Change: A Systematic Literature Review</p>
         <p class="pub-authors"><strong>K Kulasinghe</strong></p>
@@ -343,92 +203,11 @@
 
 </div>
 
-<footer>
-  © 2025 Kavinda Kulasinghe. All rights reserved.
+<footer class="footer">
+  © <span class="footer__year">2026</span> Kavinda Kulasinghe. All rights reserved.
 </footer>
 
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
-</script>
-
-<script>
-(function () {
-  const canvas = document.getElementById('banner-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function drawReactIcon(cx, cy, size, opacity, rotation) {
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(rotation);
-    ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
-    ctx.lineWidth = size * 0.05;
-    ctx.fillStyle = `rgba(255,255,255,${opacity})`;
-
-    const rx = size * 0.9;
-    const ry = size * 0.32;
-
-    for (let i = 0; i < 3; i++) {
-      ctx.save();
-      ctx.rotate((Math.PI / 3) * i);
-      ctx.beginPath();
-      ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-
-    ctx.beginPath();
-    ctx.arc(0, 0, size * 0.13, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  const COUNT = 18;
-  const particles = Array.from({ length: COUNT }, () => ({
-    x:       Math.random() * window.innerWidth,
-    y:       Math.random() * 340,
-    size:    18 + Math.random() * 28,
-    vx:      (Math.random() - 0.5) * 0.35,
-    vy:      (Math.random() - 0.5) * 0.25,
-    opacity: 0.06 + Math.random() * 0.12,
-    rot:     Math.random() * Math.PI * 2,
-    vrot:    (Math.random() - 0.5) * 0.008,
-  }));
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (const p of particles) {
-      p.x   += p.vx;
-      p.y   += p.vy;
-      p.rot += p.vrot;
-
-      if (p.x < -60)               p.x = canvas.width  + 60;
-      if (p.x > canvas.width + 60) p.x = -60;
-      if (p.y < -60)               p.y = canvas.height + 60;
-      if (p.y > canvas.height + 60) p.y = -60;
-
-      drawReactIcon(p.x, p.y, p.size, p.opacity, p.rot);
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-})();
-</script>
+<script src="main.js" defer></script>
 
 </body>
 </html>
