@@ -1,6 +1,6 @@
 # Kavinda Kulasinghe — Personal Portfolio
 
-Personal academic portfolio for [Kavinda Kulasinghe](https://kavindakulasinghe.github.io), PhD Researcher in Information Systems at the University of Oulu, Finland.
+Personal academic portfolio for [myself](https://kavindakulasinghe.github.io), 
 
 ## Live Site
 
@@ -54,6 +54,3 @@ python -m http.server 8080
 
 Pushes to `main` automatically deploy via GitHub Pages. The live site updates within ~1 minute of a push.
 
-## Research Areas
-
-Persuasive Technologies · AI in Healthcare · Behaviour Change · Digital Health Interventions · Human–AI Interaction
