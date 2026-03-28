@@ -1,7 +1,6 @@
 # Kavinda Kulasinghe — Personal Portfolio
 
-Personal academic portfolio for [myself](https://kavindakulasinghe.github.io), 
-
+Personal academic portfolio for myself.
 ## Live Site
 
 [kavindakulasinghe.github.io](https://kavindakulasinghe.github.io)
