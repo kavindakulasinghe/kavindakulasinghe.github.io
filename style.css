@@ -174,7 +174,9 @@ nav.scrolled .nav-toggle span { background: var(--black); }
     justify-content: center; align-items: center;
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 22px; color: var(--black) !important; padding: 16px 0; }
+  .nav-links li { width: 100%; }
+  .nav-links a { font-size: 22px; color: var(--black) !important; padding: 32px 0; width: 100%; text-align: center; border-bottom: 1px solid var(--border); display: block; }
+  .nav-links li:last-child a { border-bottom: none; }
 
   .page-banner { height: 220px; padding: 32px 20px; }
   .footer { padding: 24px 20px; }
